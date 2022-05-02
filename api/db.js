@@ -6,7 +6,7 @@ module.exports = {
         db.run('CREATE TABLE log (id INTEGER,timestamp CHARACTER(20),title VARCHAR(255),description TEXT)')
     },
     addLog: function addLog(id, timestamp, title, description) {
-        const q = `INSERT INTO log (id, timestamp, title, description) VALUES(${id}, "${timestamp}", "${title}", "${description}")`
+        const q = `INSERT INTO log (id, timestamp, title, description) VALUES(${id}, ${timestamp}, "${title}", "${description}")`
         console.log(q)
         db.run(q)
     },

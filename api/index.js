@@ -13,10 +13,13 @@ app.get('/createTable', function (_req, res) {
     db.close()
 })
 
-app.get('/test', function (_req, res) {
+app.get('/addLog', function (_req, res) {
     addLog(1, new Date().getTime().toString(), "TTL", "DESC")
+    res.send('Logged')
+})
+
+app.get('/test', function (_req, res) {
     res.send('Test successful')
-    db.close()
 })
 
 export default {
