@@ -1,5 +1,5 @@
 const express = require('express')
-const { db, createTable } = require('./db')
+const { db, createTable, addLog } = require('./db')
 
 
 
@@ -14,6 +14,7 @@ app.get('/createTable', function (_req, res) {
 })
 
 app.get('/test', function (_req, res) {
+    addLog(1, new Date().getTime().toString(), "TTL", "DESC")
     res.send('Test successful')
     db.close()
 })
