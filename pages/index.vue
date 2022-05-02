@@ -1,5 +1,8 @@
 <template>
-  <Journey/>
+  <div>
+    <AddLog />
+    <Journey />
+  </div>
 </template>
 
 <script>
