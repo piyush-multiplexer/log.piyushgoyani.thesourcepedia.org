@@ -5,12 +5,27 @@
     :animation-duration="1500"
     category=""
     color="blue"
-    :date="new Date('2020-01-02')"
-    description="Hello"
+    :date="timeline.date"
+    :description="timeline.description"
     icon=""
-    :is-last="false"
+    :is-last="isLast"
     thumbnail=""
     theme="light"
-    title="With"
+    :title="timeline.title"
   ></vue-timeline-update>
 </template>
+<script>
+export default {
+  name: 'TimeLine',
+  props: {
+    timeline: {
+      type: Object,
+      required: true,
+    },
+    isLast: {
+      type: Boolean,
+      default: false,
+    },
+  },
+}
+</script>

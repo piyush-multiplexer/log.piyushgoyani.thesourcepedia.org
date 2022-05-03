@@ -1,5 +1,5 @@
 const express = require('express')
-const { createTable, addLog } = require('./db')
+const { createTable, addLog, getLogs } = require('./db')
 
 
 
@@ -16,7 +16,14 @@ app.post('/addLog', function (_req, res) {
     const body = _req.body
     const createdAt = new Date().getTime().toString()
     addLog(createdAt, body.date, body.title, body.description)
-    res.json({ flag: 'true', message: 'Log added' })
+    res.json({ flag: true, message: 'Log added' })
+})
+
+app.get('/getLogs', async function (_req, res) {
+    res.json({
+        flag: true,
+        data: await getLogs()
+    })
 })
 
 app.get('/test', function (_req, res) {

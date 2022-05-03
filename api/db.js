@@ -9,6 +9,17 @@ module.exports = {
         const q = `INSERT INTO log (createdAt, date, title, description) VALUES(${createdAt}, "${date}", "${title}", "${description}")`
         db.run(q)
     },
+    getLogs: function getLogs() {
+        return new Promise((resolve, reject) => {
+            db.all('SELECT * FROM log ORDER BY createdAt DESC', (err, rows) => {
+                if (err) {
+                    reject(err)
+                } else {
+                    resolve(rows)
+                }
+            })
+        })
+    },
     close: function close() {
         db.close()
     }

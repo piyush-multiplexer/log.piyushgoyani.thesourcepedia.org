@@ -1,7 +1,31 @@
 <template>
-  <div
-    class="relative flex items-top justify-center min-h-screen bg-gray-100 sm:items-center sm:pt-0 sm:rounded-lg"
-  >
-    <TimeLine></TimeLine>
+  <div class="">
+    <div v-for="(timeline, idx) in logs" :key="idx">
+      <TimeLine :timeline="timeline" :is-last="idx === logs.length-1"></TimeLine>
+    </div>
   </div>
 </template>
+<script>
+export default {
+  name: 'Journey',
+  data() {
+    return {
+      logs: [],
+      url: 'http://localhost:3000/api/',
+    }
+  },
+  created() {
+    console.log('TimeLine created')
+    this.getLogs()
+  },
+  methods: {
+    async getLogs() {
+      await fetch(`${this.url}getLogs`)
+        .then((res) => res.json())
+        .then((res) => {
+          this.logs = res.data
+        })
+    },
+  },
+}
+</script>
