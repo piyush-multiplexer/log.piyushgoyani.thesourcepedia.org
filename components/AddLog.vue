@@ -29,7 +29,8 @@
     <div class="mb-6">
       <VueTailWindPicker
         :theme="theme"
-        :init="false"
+        :init="true"
+        start-date="1990-01-01"
         @change="(v) => (date = v)"
       >
         <label
