@@ -1,6 +1,10 @@
 <template>
   <div class="m-2 p-6">
-    <div class="mb-6"></div>
+    <div class="mb-6">
+      <VueTailWindPicker :init="false" @change="(v) => (date = v)">
+        <input v-model="date" placeholder="Example initial value" />
+      </VueTailWindPicker>
+    </div>
     <div class="mb-6">
       <label
         for="title"
@@ -43,8 +47,10 @@
 <script>
 export default {
   name: 'AddLog',
+  components: { VueTailWindPicker: () => import('vue-tailwind-picker') },
   data() {
     return {
+      date: '',
       title: '',
       description: '',
       url: 'http://localhost:3000/api/',
@@ -52,19 +58,18 @@ export default {
   },
   methods: {
     async addLog() {
-      const res = await fetch(`${this.url}addLog`, {
+      await fetch(`${this.url}addLog`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           title: this.title,
           description: this.description,
-          date: new Date().toDateString(),
+          date: new Date(this.date).toDateString(),
         }),
       })
-      const data = await res.json()
-      console.log(data)
       this.title = ''
       this.description = ''
+      this.date = ''
     },
   },
 }
