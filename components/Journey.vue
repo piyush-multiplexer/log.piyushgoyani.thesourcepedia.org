@@ -1,7 +1,10 @@
 <template>
   <div class="">
     <div v-for="(timeline, idx) in logs" :key="idx">
-      <TimeLine :timeline="timeline" :is-last="idx === logs.length-1"></TimeLine>
+      <TimeLine
+        :timeline="timeline"
+        :is-last="idx === logs.length - 1"
+      ></TimeLine>
     </div>
   </div>
 </template>
@@ -11,11 +14,11 @@ export default {
   data() {
     return {
       logs: [],
-      url: 'http://localhost:3000/api/',
+      url: '',
     }
   },
-  created() {
-    console.log('TimeLine created')
+  mounted() {
+    this.url = window.location.href + 'api/'
     this.getLogs()
   },
   methods: {

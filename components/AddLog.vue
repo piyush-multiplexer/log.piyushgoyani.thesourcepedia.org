@@ -115,7 +115,7 @@ export default {
       date: '',
       title: '',
       description: '',
-      url: 'http://localhost:3000/api/',
+      url: '',
       isAlert: false,
       theme: {
         background: '#FFFFFF',
@@ -143,6 +143,9 @@ export default {
         },
       },
     }
+  },
+  mounted() {
+    this.url = window.location.href + 'api/'
   },
   methods: {
     async addLog() {
