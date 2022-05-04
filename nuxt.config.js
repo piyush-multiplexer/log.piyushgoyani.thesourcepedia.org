@@ -60,5 +60,8 @@ export default {
 
   serverMiddleware: {
     '/api': '~/api'
+  },
+  server: {
+    port: 55555
   }
 }
