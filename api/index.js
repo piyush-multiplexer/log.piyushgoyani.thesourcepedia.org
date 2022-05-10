@@ -30,6 +30,19 @@ app.get('/test', function (_req, res) {
     res.send('Test successful')
 })
 
+app.post('/auth/login', function (_req, res) {
+    res.json({
+        flag: true,
+        message: 'Login successful'
+    })
+})
+app.get('/auth/user', function (_req, res) {
+    res.json({
+        username: 'admin',
+        token: '123456789'
+    })
+})
+
 export default {
     path: '/api',
     handler: app

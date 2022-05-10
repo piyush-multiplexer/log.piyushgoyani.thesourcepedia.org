@@ -42,10 +42,14 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    // https://auth.nuxtjs.org/
+    '@nuxtjs/auth',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    baseURL: 'http://localhost:55555/api'
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
@@ -56,6 +60,26 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+  },
+
+  auth: {
+    strategies: {
+      local: {
+        user: { property: 'user', autoFetch: true },
+        token: { required: true, type: 'Bearer', global: true, property: 'token' },
+        endpoints: {
+          login: { url: '/auth/login', method: 'post', },
+          logout: { url: '/auth/logout', method: 'post', },
+          user: { url: '/auth/user', method: 'get', },
+        },
+      }
+    },
+    redirect: {
+      login: '/login',
+      logout: '/',
+      user: '/profile',
+      callback: '/login'
+    }
   },
 
   serverMiddleware: {

@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@growthbunker/vuetimeline": "^0.1.17",
+    "@nuxtjs/auth": "^4.9.1",
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/pwa": "^3.3.5",
     "core-js": "^3.15.1",
