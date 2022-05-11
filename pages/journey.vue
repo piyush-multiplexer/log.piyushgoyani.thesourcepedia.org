@@ -1,5 +1,6 @@
 <template>
-  <div class="">
+  <div class="m-2 p-4">
+    <h2 class="mb-4">Timeline</h2>
     <div v-for="(timeline, idx) in logs" :key="idx">
       <TimeLine
         :timeline="timeline"
@@ -18,7 +19,7 @@ export default {
     }
   },
   mounted() {
-    this.url = window.location.href + 'api/'
+    this.url = `${window.location.origin}/api/`
     this.getLogs()
   },
   methods: {
