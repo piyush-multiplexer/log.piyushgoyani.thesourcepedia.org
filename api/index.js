@@ -1,15 +1,22 @@
 const express = require('express')
-const { createTable, addLog, getLogs } = require('./db')
-
-
+const { createTable, migrateAuth, addLog, getLogs } = require('./db')
 
 const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
+app.get('/', function (_req, res) {
+    res.send('<h2>Functions</h2><ul><li>Create Table</li><li>Migrate Auth</li><li>Add Log</li><li>Get Logs</li><li>Auth Login</li><li>Auth User</li></ul>')
+})
+
 app.get('/createTable', function (_req, res) {
     createTable()
     res.send('Table Created')
+})
+
+app.get('/migrateAuth', async function (_req, res) {
+    await migrateAuth()
+    res.send('Auth Initialized')
 })
 
 app.post('/addLog', function (_req, res) {
