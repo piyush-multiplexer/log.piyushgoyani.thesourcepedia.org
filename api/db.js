@@ -2,11 +2,6 @@ const sqlite3 = require('sqlite3').verbose()
 const db = new sqlite3.Database('pg-logs.db')
 module.exports = {
     db,
-    migrateAuth() {
-        db.run('CREATE TABLE IF NOT EXISTS auth (id INTEGER PRIMARY KEY, username TEXT, password TEXT)', () => {
-            db.run('INSERT INTO auth (username, password) VALUES (?, ?)', ['admin', 'admin'])
-        })
-    },
     createTable() {
         db.run('CREATE TABLE log (id INTEGER PRIMARY KEY AUTOINCREMENT, createdAt CHARACTER(20), date CHARACTER(20), title VARCHAR(255), description TEXT)')
     },
@@ -17,11 +12,8 @@ module.exports = {
     getLogs() {
         return new Promise((resolve, reject) => {
             db.all('SELECT * FROM log ORDER BY createdAt DESC', (err, rows) => {
-                if (err) {
-                    reject(err)
-                } else {
-                    resolve(rows)
-                }
+                if (err) { reject(err) }
+                else { resolve(rows) }
             })
         })
     },

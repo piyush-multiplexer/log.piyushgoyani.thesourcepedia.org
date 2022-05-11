@@ -1,3 +1,5 @@
+import { enabled } from "express/lib/application";
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -42,8 +44,7 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
-    // https://auth.nuxtjs.org/
-    '@nuxtjs/auth',
+    'nuxt-basic-auth-module'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -62,29 +63,17 @@ export default {
   build: {
   },
 
-  auth: {
-    strategies: {
-      local: {
-        user: { property: 'user', autoFetch: true },
-        token: { required: true, type: 'Bearer', global: true, property: 'token' },
-        endpoints: {
-          login: { url: '/auth/login', method: 'post', },
-          logout: { url: '/auth/logout', method: 'post', },
-          user: { url: '/auth/user', method: 'get', },
-        },
-      }
-    },
-    redirect: {
-      login: '/login',
-      logout: '/',
-      user: '/profile',
-      callback: '/login'
-    }
+  basic: {
+    name: 'piyushgoyani',
+    pass: '123456',
+    message: 'If you are authorized, you are in.',
+    enabled: true
   },
 
   serverMiddleware: {
     '/api': '~/api'
   },
+
   server: {
     port: 55555
   }
