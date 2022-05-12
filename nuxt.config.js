@@ -1,5 +1,3 @@
-import { enabled } from "express/lib/application";
-
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -64,8 +62,8 @@ export default {
   },
 
   basic: {
-    name: 'piyushgoyani',
-    pass: '123456',
+    name: process.env.NW_USERNAME,
+    pass: process.env.NW_PASSWORD,
     message: 'If you are authorized, you are in.',
     enabled: true
   },
